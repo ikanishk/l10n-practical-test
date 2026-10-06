@@ -4,7 +4,8 @@
   "nav.home": "Home",
   "nav.devices": "Devices",
   "nav.settings": "Settings",
-  "battery.status": "Battery at {percent}%",
+  "nav.help": "Help",
+  "battery.status": "Battery level: {percent}%",
   "battery.charging": "Charging - {minutes} min to full",
   "update.available": "{count} updates available",
   "update.none": "Your device is up to date",
@@ -12,5 +13,5 @@
   "error.generic": "Something went wrong. Try again.",
   "dialog.confirm": "Confirm",
   "dialog.cancel": "Cancel",
-  "footer.copyright": "© {year} Lenovo. All rights reserved."
+  "footer.copyright": "Copyright {year} Lenovo. All rights reserved."
 }
