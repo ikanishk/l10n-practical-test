@@ -1,0 +1,13 @@
+{
+  "app.title": "Compagnon Lenovo",
+  "app.tagline": "Votre appareil, à votre façon",
+  "nav.home": "Accueil",
+  "nav.devices": "Appareils",
+  "nav.settings": "Paramètres",
+  "battery.status": "Batterie à {pct}%",
+  "update.available": "{count} mises à jour disponibles",
+  "error.network": "Impossible de joindre le serveur. Vérifiez votre connexion.",
+  "dialog.confirm": "Confirmer",
+  "dialog.cancel": "Annuler",
+  "legacy.welcome": "Bienvenue"
+}

@@ -1,0 +1,16 @@
+{
+  "app.title": "Lenovo Companion",
+  "app.tagline": "Your device, your way",
+  "nav.home": "Home",
+  "nav.devices": "Devices",
+  "nav.settings": "Settings",
+  "battery.status": "Battery at {percent}%",
+  "battery.charging": "Charging - {minutes} min to full",
+  "update.available": "{count} updates available",
+  "update.none": "Your device is up to date",
+  "error.network": "Cannot reach the server. Check your connection.",
+  "error.generic": "Something went wrong. Try again.",
+  "dialog.confirm": "Confirm",
+  "dialog.cancel": "Cancel",
+  "footer.copyright": "© {year} Lenovo. All rights reserved."
+}
