@@ -1,0 +1,11 @@
+{
+  "app.title": "Lenovo コンパニオン",
+  "nav.home": "ホーム",
+  "nav.devices": "デバイス",
+  "nav.settings": "設定",
+  "battery.status": "バッテリー残量",
+  "update.available": "{count} 件の更新",
+  "error.network": "",
+  "dialog.confirm": "確認",
+  "dialog.cancel": "キャンセル"
+}
