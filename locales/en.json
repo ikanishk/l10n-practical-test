@@ -5,6 +5,7 @@
   "nav.devices": "Devices",
   "nav.settings": "Settings",
   "nav.support": "Support",
+  "nav.help": "Help",
   "battery.status": "Battery: {percent}%",
   "battery.charging": "Charging - {minutes} min to full",
   "update.available": "{count} updates available",

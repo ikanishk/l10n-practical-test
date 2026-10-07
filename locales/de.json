@@ -1,0 +1,14 @@
+{
+  "app.title": "Lenovo Companion",
+  "app.tagline": "Ihr Gerät, Ihr Stil",
+  "nav.home": "Startseite",
+  "nav.devices": "Geräte",
+  "nav.settings": "Einstellungen",
+  "battery.status": "Akku bei {prozent}%",
+  "battery.charging": "Lädt - {minutes} Min. bis voll",
+  "update.available": "{count} Updates verfügbar",
+  "update.none": "Ihr Gerät ist aktuell",
+  "error.network": "Server nicht erreichbar. Prüfen Sie Ihre Verbindung.",
+  "dialog.confirm": "Bestätigen",
+  "dialog.cancel": "Abbrechen"
+}

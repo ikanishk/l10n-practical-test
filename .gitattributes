@@ -1,0 +1,5 @@
+# Shell scripts must keep LF endings: CRLF breaks "set -o pipefail" in Linux CI.
+*.sh   text eol=lf
+Jenkinsfile text eol=lf
+*.py   text eol=lf
+*.json text eol=lf
