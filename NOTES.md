@@ -86,10 +86,21 @@ Stages: **Checkout → Validate → Report → Quality Gate**, `post` with
 - `skipDefaultCheckout(true)`: "Pipeline script from SCM" already checks out
   implicitly; this avoids checking out twice.
 
-**How it was run:** <!-- TODO Kanishk: fill in after running on your Mac -->
-Real Jenkins in Docker (OrbStack) per the README, job `l10n` pointed at
-`file:///repo`, branch `*/feature/kanishk-locale-qa`.
-Build #1: _result_ · Build #2 (`STRICT=true`): _result_ · screenshots in `docs/`.
+**How it was run:** not run against a live Jenkins yet (option 3 in the
+README). How I would run and debug it:
+1. Start `jenkins/jenkins:lts` with the repo mounted at `/repo` and
+   `ALLOW_LOCAL_CHECKOUT=true`, install `python3` in the container, add both
+   `safe.directory` entries (README steps 1–4).
+2. Pipeline job from SCM: `file:///repo`, branch `*/feature/kanishk-locale-qa`.
+3. Expected: build #1 **UNSTABLE** (fr/ja/de have real problems), report
+   archived; rebuild with `STRICT=true` → **FAILURE**; `LOCALES_DIR=nope` →
+   **FAILURE** with "locales directory not found" (exit 2, tooling error).
+4. If it fails before any stage: check `ALLOW_LOCAL_CHECKOUT` and
+   `safe.directory`. `set: pipefail: invalid option name` = CRLF in the
+   script (prevented by `.gitattributes`). `python: not found` = the apt
+   install was lost when the container was recreated.
+5. Lint without a build: POST the file to
+   `/pipeline-model-converter/validate` with an API token.
 
 ## Task 4 — merge of `feature/de-locale`
 
@@ -130,9 +141,9 @@ translations stale; a real pipeline would flag those for re-translation.
 
 ## AI tools used — and what had to be corrected
 
-Used: **Claude (Cowork)** to draft the scripts, Jenkinsfile and these notes;
-I reviewed and ran everything. Issues caught while reviewing/testing the
-generated output:
+Used: **Claude (Cowork)** to draft the scripts, Jenkinsfile and these notes,
+then reviewed and tested the output. Issues found while testing the
+generated drafts and fixed:
 
 1. `run_checks.sh` used `dirname` to find its own directory — with a broken
    `PATH` the script died on `dirname` before it could print the real error
@@ -147,10 +158,8 @@ generated output:
 5. ERR-trap failures originally exited with the failing command's code
    (often 1 = "locale problems"), blurring the exit-code contract. Now 2.
 
-<!-- TODO Kanishk: add anything YOU changed or questioned while reviewing. -->
-
 ## Unfinished / where I'd go next
 
-- Jenkins evidence (see Task 3) — pending my local run.
+- Jenkins: not run against a live instance; run/debug plan is in Task 3.
 - ICU plural/select placeholder parsing is not implemented (see Task 1 limits).
 - No `run_checks.ps1`; I work in Bash.
