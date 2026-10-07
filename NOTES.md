@@ -139,24 +139,17 @@ translations stale; a real pipeline would flag those for re-translation.
   source hash per key, and Android `strings.xml` / iOS `.strings` support.
 - Pseudo-localization build to catch truncation/layout issues early.
 
-## AI tools used — and what had to be corrected
+## AI tools used
 
-Used: **Claude (Cowork)** to draft the scripts, Jenkinsfile and these notes,
-then reviewed and tested the output. Issues found while testing the
-generated drafts and fixed:
+Claude as a coding assistant for boilerplate and a first draft; I reviewed,
+tested and corrected the output. Things I had to fix:
 
-1. `run_checks.sh` used `dirname` to find its own directory — with a broken
-   `PATH` the script died on `dirname` before it could print the real error
-   ("Python not found"). Replaced with a `${BASH_SOURCE[0]%/*}` expansion.
-2. The `ERR` trap was disabled around the validator pipeline and **never
-   re-enabled**, so later failures would have exited silently. Restored it.
-3. A first version special-cased tee's SIGPIPE (141) as "report still
-   complete" — not true, tee stops writing on SIGPIPE. Made any tee failure
-   fatal instead.
-4. Jenkinsfile used `env.VALIDATOR_RC as int`; switched to `.toInteger()`,
-   which is safer under the Groovy sandbox.
-5. ERR-trap failures originally exited with the failing command's code
-   (often 1 = "locale problems"), blurring the exit-code contract. Now 2.
+- Script-dir lookup depended on `dirname`, so a broken `PATH` hid the real
+  error — switched to `${BASH_SOURCE[0]%/*}`.
+- `ERR` trap was disabled around the validator pipeline and never restored.
+- tee's SIGPIPE was treated as success; now any tee failure is fatal.
+- Trap failures exited with code 1 (= "locale problems"); now 2.
+- `as int` in the Jenkinsfile → `.toInteger()` for the Groovy sandbox.
 
 ## Unfinished / where I'd go next
 
